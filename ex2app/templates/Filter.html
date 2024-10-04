@@ -1,0 +1,22 @@
+<html>
+<body>
+    <h1>KAMARAJ COLLEGE OF ENGINEERING AND TECHNOLOGY </h1>
+    <h2>Web Application Using Django Framework  </h2>
+    <h1>Filter Names by Starting Character</h1>
+    <form method="GET" action="">
+        <label for="start_char">Enter the starting character:</label>
+        <input type="text" id="start_char" name="start_char" maxlength="1">
+        <button type="submit">Filter</button>
+    </form>
+    {% if filtered_names %}
+        <h2>Filtered Names:</h2>
+        <ul>
+            {% for name in filtered_names %}
+                <li>{{ name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No names to display.</p>
+    {% endif %}
+</body>
+</html>

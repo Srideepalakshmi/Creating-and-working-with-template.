@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Odd or Even & Filter Names</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <center>
+        <h1>KAMARAJ COLLEGE OF ENGINEERING AND TECHNOLOGY</h1>
+        <h2>Web Application Using Django Framework</h2>
+        <h2><pre style="font-family: 'Times New Roman', Times, serif;">    S.Srideepalakshmi
+    Department of Information Technology [22UIT082]
+    </pre></h2>
+        <h2>Creating and Working with Templates</h2>
+        
+        <h1>ODD or EVEN Checker</h1>
+        <form method="GET" action="{% url 'oddfilter' %}">
+            <label for="number">Enter a number:</label>
+            <input type="number" id="number" name="number" value="{{ number }}">
+            <input type="hidden" name="action" value="check_odd_even">
+            <button type="submit">Check</button>
+        </form>
+
+        {% if number is not None %}
+            <h2>Number: {{ number }}</h2>
+            <p>It is {{ is_even|yesno:"even,odd" }}.</p>
+            <p>{{ even_performance }}</p>
+            <p>{{ odd_performance }}</p>
+        {% endif %}
+
+        <h1>Name Filter</h1>
+        <form method="GET" action="{% url 'oddfilter' %}">
+            <label for="start_char">Enter the starting character:</label>
+            <input type="text" id="start_char" name="start_char" value="{{ start_char }}" maxlength="1">
+            <input type="hidden" name="action" value="filter_names">
+            <button type="submit">Filter</button>
+        </form>
+
+        {% if filtered_names %}
+            <h2>Filtered Names:</h2>
+            <ul>
+                {% for name in filtered_names %}
+                    <li>{{ name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No names to display.</p>
+        {% endif %}
+    </center>
+</body>
+</html>
